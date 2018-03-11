@@ -14,7 +14,8 @@ function austeve_foundation_shortcode_columns( $atts, $content ) {
     $atts = shortcode_atts( array(
         'small' => 12,
         'medium' => null,
-        'large' => null
+        'large' => null,
+        'class' => null
     ), $atts );
     
     $atts['medium'] = ( $atts['medium'] == null ) ? $atts['small'] : $atts['medium'];
@@ -23,21 +24,35 @@ function austeve_foundation_shortcode_columns( $atts, $content ) {
     extract( $atts );
     
     $sizes = 'small-' . $small . ' medium-' . $medium . ' large-' . $large;
-    
-    return '<div class="columns ' . $sizes . '">' . do_shortcode( $content ) . '</div>';
+
+    $additionalClasses = ( $atts['class'] == null ) ? '' : ' '.$atts['class'];
+
+    return '<div class="columns ' . $sizes . $additionalClasses . '">' . do_shortcode( $content ) . '</div>';
 }
 
 add_shortcode( 'column', 'austeve_foundation_shortcode_columns');
 
 function austeve_foundation_shortcode_row( $atts, $content ) {
-    return '<div class="row">' . do_shortcode( $content ) . '</div>';
+    $atts = shortcode_atts( array(
+        'class' => null
+    ), $atts );
+
+    $additionalClasses = ( $atts['class'] == null ) ? '' : ' '.$atts['class'];
+
+    return '<div class="row' . $additionalClasses . '">' . do_shortcode( $content ) . '</div>';
 }
 
 add_shortcode( 'row', 'austeve_foundation_shortcode_row' );
 
 /* Block grid row/columns */
 function austeve_foundation_shortcode_column( $atts, $content ) {
-    return '<div class="column">' . do_shortcode( $content ) . '</div>';
+    $atts = shortcode_atts( array(
+        'class' => null
+    ), $atts );
+
+    $additionalClasses = ( $atts['class'] == null ) ? '' : ' '.$atts['class'];
+
+    return '<div class="column' . $additionalClasses . '">' . do_shortcode( $content ) . '</div>';
 }
 
 add_shortcode( 'blockcolumn', 'austeve_foundation_shortcode_column' );
@@ -46,7 +61,8 @@ function austeve_foundation_shortcode_blockrow( $atts, $content ) {
     $atts = shortcode_atts( array(
         'small' => 1,
         'medium' => null,
-        'large' => null
+        'large' => null,
+        'class' => null
     ), $atts );
     
     $atts['medium'] = ( $atts['medium'] == null ) ? $atts['small'] : $atts['medium'];
@@ -56,7 +72,9 @@ function austeve_foundation_shortcode_blockrow( $atts, $content ) {
     
     $sizes = 'small-up-' . $small . ' medium-up-' . $medium . ' large-up-' . $large;
     
-    return '<div class="row ' . $sizes . '">' . do_shortcode( $content ) . '</div>';
+    $additionalClasses = ( $atts['class'] == null ) ? '' : ' '.$atts['class'];
+
+    return '<div class="row ' . $sizes . $additionalClasses . '">' . do_shortcode( $content ) . '</div>';
 }
 
 add_shortcode( 'blockrow', 'austeve_foundation_shortcode_blockrow' );

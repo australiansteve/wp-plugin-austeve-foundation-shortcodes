@@ -3,7 +3,7 @@ var	gulp			=	require('gulp')
 
 //Our 'deploy' task which deploys on a local dev environment
 
-gulp.task('deploylocal', function() {
+gulp.task('deploy', function() {
 
 	var files = [
 		'page-templates/**/*.php',
@@ -11,7 +11,7 @@ gulp.task('deploylocal', function() {
 		'*.php',
 		'*.css'];
 
-	var dest = '/var/www/html/theme-dev/wp-content/plugins/austeve-foundation-shortcodes';
+	var dest = '/Applications/MAMP/htdocs/ssj/wp-content/plugins/austeve-foundation-shortcodes';
 
 	return gulp.src(files, {base:"."})
 	        .pipe(gulp.dest(dest));

@@ -34,12 +34,14 @@ add_shortcode( 'column', 'austeve_foundation_shortcode_columns');
 
 function austeve_foundation_shortcode_row( $atts, $content ) {
     $atts = shortcode_atts( array(
-        'class' => null
+        'class' => null,
+        'background_image' => null,
     ), $atts );
 
     $additionalClasses = ( $atts['class'] == null ) ? '' : ' '.$atts['class'];
+    $style = ( $atts['background_image'] == null ) ? '' : 'background-image:url('.$atts['background_image'].')';
 
-    return '<div class="row' . $additionalClasses . '">' . do_shortcode( $content ) . '</div>';
+    return '<div class="row' . $additionalClasses . '" style="'.$style.'">' . do_shortcode( $content ) . '</div>';
 }
 
 add_shortcode( 'row', 'austeve_foundation_shortcode_row' );
